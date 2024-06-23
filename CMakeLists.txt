@@ -15,7 +15,7 @@ set(GENICAM_INSTALL_INCLUDEDIRS include/ganicam)
 add_subdirectory(genicam)
 find_package(Genicam REQUIRED NO_CMAKE_PATH PATHS ${CMAKE_CURRENT_SOURCE_DIR}/genicam CONFIG NO_DEFAULT_PATH)
 add_library(${PROJECT_NAMESPACE}::genicam ALIAS genicam)
-include_directories(${genicam_INCLUDES})
+include_directories(${Genicam_INCLUDES})
 
 
 include_directories(

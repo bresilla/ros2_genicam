@@ -112,12 +112,12 @@ endforeach()
 set(genicam_INCLUDE_DIRS
   ${PACKAGE_PREFIX_DIR}/library/CPP/include/
 )
-set (genicam_INCLUDES ${genicam_INCLUDE_DIRS})
 
 add_library(genicam INTERFACE)
 add_library(genicam::genicam ALIAS genicam)
 target_link_libraries(genicam INTERFACE ${GENICAM_NAMESPACED_TARGETS})
 
+set(Genicam_INCLUDES ${genicam_INCLUDE_DIRS})
 set(Genicam_LIBRARIES ${GENICAM_LIBRARIES} CACHE STRING "Genicam libraries")
 set(Genicam_TARGETS ${GENICAM_NAMESPACED_TARGETS} CACHE STRING "Genicam targets with namespace")
 set(Genicam_FOUND ON CACHE BOOL "")

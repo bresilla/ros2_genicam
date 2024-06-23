@@ -6,7 +6,12 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 
+include_directories(
+  include
+)
 
+# find dependencies
+find_package(ament_cmake REQUIRED)
 
 
 set(GENICAM_INSTALL_LIBDIRS lib/ganicam)
@@ -17,28 +22,13 @@ find_package(Genicam REQUIRED NO_CMAKE_PATH PATHS ${CMAKE_CURRENT_SOURCE_DIR}/ge
 add_library(${PROJECT_NAMESPACE}::genicam ALIAS genicam)
 include_directories(${Genicam_INCLUDES})
 
-
-include_directories(
-  include
-)
-
 set(build_dependencies
   Genicam
 )
 
-# find dependencies
-find_package(ament_cmake REQUIRED)
-
 add_executable(main 
   src/main.cpp)
 ament_target_dependencies(main ${build_dependencies})
-# target_include_directories(main PRIVATE 
-#   include
-#   ${GENICAM_INSTALL_INCLUDEDIRS}
-# )
-# amet_include_directories(main ${GENICAM_INCLUDE_DIRS})
-
-
 
 
 install(TARGETS

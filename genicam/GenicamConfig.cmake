@@ -2,6 +2,7 @@
 #
 # It defines the requires genicam libraries as imported targets and defines:
 # - Genicam_TARGETS: list of all imported target with their prefix
+# - Genicam_INCLUDES: list of include directories
 # - Genicam_LIBRARIES: list of libraries
 
 get_filename_component(PACKAGE_PREFIX_DIR "${CMAKE_CURRENT_LIST_DIR}/" ABSOLUTE)
@@ -109,16 +110,12 @@ foreach(GENICAM_LIB ${GENICAM_LIBRARIES})
   endif ()
 endforeach()
 
-set(genicam_INCLUDE_DIRS
-  ${PACKAGE_PREFIX_DIR}/library/CPP/include/
-)
-
 add_library(genicam INTERFACE)
 add_library(genicam::genicam ALIAS genicam)
 target_link_libraries(genicam INTERFACE ${GENICAM_NAMESPACED_TARGETS})
 
-set(Genicam_INCLUDES ${genicam_INCLUDE_DIRS})
 set(Genicam_LIBRARIES ${GENICAM_LIBRARIES} CACHE STRING "Genicam libraries")
 set(Genicam_TARGETS ${GENICAM_NAMESPACED_TARGETS} CACHE STRING "Genicam targets with namespace")
+set(Genicam_INCLUDES ${GENICAM_NAMESPACED_TARGETS} CACHE STRING "Genicam targets with namespace")
 set(Genicam_FOUND ON CACHE BOOL "")
 set(PACKAGE_PREFIX_DIR)
